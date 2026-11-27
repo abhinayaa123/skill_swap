@@ -1,0 +1,46 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-home">
+
+    <div class="admin-home-content">
+
+        <span class="admin-overline">
+            YOUR SKILLSWAP ADMINISTRATION JOURNEY STARTS HERE
+        </span>
+
+        <div class="admin-logo-mark">
+            <span class="admin-logo-dot admin-dot-one"></span>
+            <span class="admin-logo-line"></span>
+            <span class="admin-logo-dot admin-dot-two"></span>
+        </div>
+
+        <h1>
+            Welcome to <span>SkillSwap!</span>
+        </h1>
+
+        <p>
+            Manage your community, oversee skill listings and help members
+            connect, exchange expertise and grow together.
+        </p>
+
+        <a href="{% url 'admin_browse_skills' %}" class="btn">
+            Browse Skills
+            <span class="admin-btn-arrow">→</span>
+        </a>
+
+    </div>
+
+    <div class="admin-decoration-circle"></div>
+    <div class="admin-decoration-small"></div>
+
+</section>
+
+{% endblock %}

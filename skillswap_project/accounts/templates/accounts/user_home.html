@@ -1,0 +1,53 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/user_home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="user-home">
+
+    <div class="user-home-content">
+
+        <span class="user-home-eyebrow">YOUR SKILL-SHARING JOURNEY STARTS HERE</span>
+
+        <div class="user-home-decoration">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="64" height="64" rx="20" fill="#14532d"/>
+                <circle cx="24" cy="24" r="8" fill="#bbf7d0"/>
+                <circle cx="40" cy="40" r="8" fill="#86efac"/>
+                <path d="M27 34L37 30" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <h1>Welcome to <span>SkillSwap!</span></h1>
+
+        <p>
+            Learn new skills and share your knowledge with others.
+            Connect with people, exchange expertise and grow together.
+        </p>
+
+        <a href="{% url 'browse_skills' %}" class="user-home-button">
+            Browse Skills
+            <span>→</span>
+        </a>
+
+        <div class="user-home-note">
+            <span class="user-home-dot"></span>
+            Learn. Share. Grow.
+        </div>
+
+    </div>
+
+    <div class="user-home-side-decoration">
+        <div class="decoration-circle circle-one"></div>
+        <div class="decoration-circle circle-two"></div>
+        <div class="decoration-circle circle-three"></div>
+    </div>
+
+</section>
+
+{% endblock %}

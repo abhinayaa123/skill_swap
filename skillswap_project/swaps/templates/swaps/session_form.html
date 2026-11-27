@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/schedule_session.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="schedule-page">
+
+    <div class="schedule-card">
+
+        <div class="schedule-heading">
+            <span class="schedule-label">SKILL EXCHANGE</span>
+            <h2>Schedule Skill Session</h2>
+            <p>Plan a convenient time to exchange knowledge and learn together.</p>
+        </div>
+
+        <div class="exchange-details">
+            <span class="exchange-label">YOUR EXCHANGE</span>
+
+            <div class="exchange-skills">
+                <span class="exchange-skill">
+                    {{ swap_request.offered_skill.name }}
+                </span>
+
+                <span class="exchange-arrow">↔</span>
+
+                <span class="exchange-skill">
+                    {{ swap_request.requested_skill.name }}
+                </span>
+            </div>
+        </div>
+
+        <form method="POST" class="schedule-form">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="save-session-btn">
+                Save Session Details
+            </button>
+        </form>
+
+        <a href="{% url 'my_swaps' %}" class="back-swaps-link">
+            ← Back to My Swaps
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

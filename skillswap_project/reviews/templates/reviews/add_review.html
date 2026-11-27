@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/add_review.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="review-page">
+
+    <div class="review-card">
+
+        <div class="review-heading">
+            <span class="review-label">SHARE YOUR EXPERIENCE</span>
+            <h2>Review Your Skill Exchange</h2>
+            <p>Your feedback helps build a trusted learning community.</p>
+        </div>
+
+        <div class="review-exchange">
+            <span class="exchange-label">COMPLETED EXCHANGE</span>
+
+            <div class="exchange-skills">
+                <span class="exchange-skill">
+                    {{ swap.offered_skill.name }}
+                </span>
+
+                <span class="exchange-arrow">↔</span>
+
+                <span class="exchange-skill">
+                    {{ swap.requested_skill.name }}
+                </span>
+            </div>
+        </div>
+
+        <form method="POST" class="review-form">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="submit-review-btn">
+                Submit Review
+            </button>
+        </form>
+
+        <a href="{% url 'my_swaps' %}" class="back-swaps-link">
+            ← Back to My Swaps
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

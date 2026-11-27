@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/delete_account.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="delete-account-page">
+
+    <div class="delete-account-card">
+
+        <div class="delete-icon">
+            !
+        </div>
+
+        <span class="delete-label">ACCOUNT SETTINGS</span>
+
+        <h2>Delete My Account</h2>
+
+        <p class="delete-question">
+            Are you sure you want to deactivate your SkillSwap account?
+        </p>
+
+        <p class="delete-description">
+            You will no longer be able to log in. Your existing swap history and reviews will be preserved.
+        </p>
+
+        <div class="delete-actions">
+
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="confirm-delete-btn">
+                    Yes, Delete My Account
+                </button>
+            </form>
+
+            <a href="{% url 'profile' %}" class="cancel-delete-btn">
+                Cancel
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,307 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_swaps.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="my-swaps-page">
+
+    <div class="my-swaps-heading">
+        <span class="my-swaps-eyebrow">YOUR SKILL EXCHANGES</span>
+        <h1>My Swaps</h1>
+        <p>Manage your accepted exchanges, schedule sessions and track your progress.</p>
+    </div>
+
+    <div class="my-swaps-list">
+
+        {% for item in swaps %}
+
+            <article class="my-swap-card">
+
+                <!-- SWAP HEADER -->
+
+                <div class="my-swap-header">
+
+                    <div class="my-swap-title">
+                        <div class="my-swap-icon">↔</div>
+
+                        <div>
+                            <span class="my-swap-label">SKILL EXCHANGE</span>
+
+                            <h3>
+                                {% if item.sender == request.user %}
+                                    {{ item.receiver.username }}
+                                {% else %}
+                                    {{ item.sender.username }}
+                                {% endif %}
+                            </h3>
+                        </div>
+                    </div>
+
+                    <span class="my-swap-status status-{{ item.status|lower }}">
+                        {{ item.get_status_display }}
+                    </span>
+
+                </div>
+
+
+                <!-- SKILL DETAILS -->
+
+                <div class="my-swap-skills">
+
+                    <div class="my-swap-skill-box">
+                        <span>SKILL I WILL LEARN</span>
+
+                        <h4>
+                            {% if item.sender == request.user %}
+                                {{ item.requested_skill.name }}
+                            {% else %}
+                                {{ item.offered_skill.name }}
+                            {% endif %}
+                        </h4>
+                    </div>
+
+                    <div class="my-swap-exchange-icon">↔</div>
+
+                    <div class="my-swap-skill-box">
+                        <span>SKILL I WILL TEACH</span>
+
+                        <h4>
+                            {% if item.sender == request.user %}
+                                {{ item.offered_skill.name }}
+                            {% else %}
+                                {{ item.requested_skill.name }}
+                            {% endif %}
+                        </h4>
+                    </div>
+
+                </div>
+
+
+                <!-- SESSION SCHEDULING -->
+
+                {% if item.status == 'ACCEPTED' %}
+
+                    <div class="my-swap-section">
+
+                        <div class="my-swap-section-heading">
+                            <span class="section-icon">◷</span>
+                            <h4>Session Details</h4>
+                        </div>
+
+                        {% if item.session_date %}
+
+                            <div class="session-details-grid">
+
+                                <div class="session-detail">
+                                    <span>SESSION DATE</span>
+                                    <strong>{{ item.session_date }}</strong>
+                                </div>
+
+                                <div class="session-detail">
+                                    <span>SESSION TIME</span>
+                                    <strong>{{ item.session_time }}</strong>
+                                </div>
+
+                                <div class="session-detail">
+                                    <span>PLATFORM</span>
+                                    <strong>{{ item.meeting_platform }}</strong>
+                                </div>
+
+                            </div>
+
+                            {% if item.meeting_link %}
+                                <a href="{{ item.meeting_link }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="join-session-button">
+                                    Join Session ↗
+                                </a>
+                            {% endif %}
+
+                            <div class="session-confirmation">
+
+                                <span>Session Confirmation</span>
+
+                                {% if item.session_confirmed %}
+                                    <strong class="confirmation-done">Confirmed</strong>
+                                {% else %}
+                                    <strong class="confirmation-waiting">
+                                        Waiting for sender confirmation
+                                    </strong>
+                                {% endif %}
+
+                            </div>
+
+                            {% if not item.session_confirmed %}
+
+                                <div class="session-action">
+
+                                    {% if request.user == item.receiver %}
+
+                                        <a href="{% url 'schedule_session' item.id %}"
+                                           class="secondary-action-button">
+                                            Update Session
+                                        </a>
+
+                                    {% elif request.user == item.sender %}
+
+                                        <form method="POST" action="{% url 'confirm_session' item.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="secondary-action-button">
+                                                Confirm Session
+                                            </button>
+                                        </form>
+
+                                    {% endif %}
+
+                                </div>
+
+                            {% endif %}
+
+                        {% else %}
+
+                            <div class="session-not-scheduled">
+                                <div>
+                                    <strong>Session Not Scheduled</strong>
+                                    <p>
+                                        {% if request.user == item.receiver %}
+                                            Schedule a session to begin your skill exchange.
+                                        {% else %}
+                                            Waiting for the receiver to schedule the session.
+                                        {% endif %}
+                                    </p>
+                                </div>
+
+                                {% if request.user == item.receiver %}
+
+                                    <a href="{% url 'schedule_session' item.id %}"
+                                       class="secondary-action-button">
+                                        Schedule Session
+                                    </a>
+
+                                {% endif %}
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- COMPLETION CONFIRMATION -->
+
+                <div class="my-swap-section">
+
+                    <div class="my-swap-section-heading">
+                        <span class="section-icon">✓</span>
+                        <h4>Exchange Completion</h4>
+                    </div>
+
+                    <div class="completion-confirmations">
+
+                        <div class="completion-person">
+                            <span>Sender Confirmation</span>
+
+                            {% if item.sender_confirmed %}
+                                <strong class="confirmation-done">✓ Confirmed</strong>
+                            {% else %}
+                                <strong class="confirmation-waiting">Waiting</strong>
+                            {% endif %}
+                        </div>
+
+                        <div class="completion-person">
+                            <span>Receiver Confirmation</span>
+
+                            {% if item.receiver_confirmed %}
+                                <strong class="confirmation-done">✓ Confirmed</strong>
+                            {% else %}
+                                <strong class="confirmation-waiting">Waiting</strong>
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                    {% if item.status == 'ACCEPTED' %}
+
+                        {% if request.user == item.sender and not item.sender_confirmed %}
+
+                            <form method="POST" action="{% url 'confirm_completion' item.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="completion-button">
+                                    Confirm Completion
+                                </button>
+                            </form>
+
+                        {% elif request.user == item.receiver and not item.receiver_confirmed %}
+
+                            <form method="POST" action="{% url 'confirm_completion' item.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="completion-button">
+                                    Confirm Completion
+                                </button>
+                            </form>
+
+                        {% endif %}
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- REVIEW SECTION -->
+
+                {% if item.status == 'COMPLETED' %}
+
+                    <div class="my-swap-review">
+
+                        {% if not item.user_has_reviewed %}
+
+                            <div>
+                                <strong>Exchange Completed!</strong>
+                                <p>Share your experience by rating this exchange.</p>
+                            </div>
+
+                            <a href="{% url 'add_review' item.id %}"
+                               class="review-swap-button">
+                                Rate & Review
+                            </a>
+
+                        {% else %}
+
+                            <p class="review-already-done">
+                                ✓ You have already reviewed this exchange.
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endif %}
+
+            </article>
+
+        {% empty %}
+
+            <div class="my-swaps-empty">
+
+                <div class="my-swaps-empty-icon">↔</div>
+
+                <h3>No Accepted Swaps Yet</h3>
+
+                <p>You have no accepted swaps yet.</p>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

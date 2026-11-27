@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/add_skill.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="add-skill-page">
+
+    <div class="add-skill-card">
+
+        <div class="add-skill-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V19M5 12H19"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <div class="add-skill-heading">
+            <span class="add-skill-eyebrow">GROW WITH SKILLSWAP</span>
+            <h1>Add Your Skill</h1>
+            <p>Share what you know or tell the community what you want to learn.</p>
+        </div>
+
+        <form method="POST" class="add-skill-form">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="add-skill-submit">
+                Add Skill
+                <span>→</span>
+            </button>
+
+        </form>
+
+        <a href="{% url 'profile' %}" class="add-skill-back">
+            ← Back to Profile
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

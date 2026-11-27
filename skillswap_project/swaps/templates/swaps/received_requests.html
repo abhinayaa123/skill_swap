@@ -1,0 +1,100 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/received_requests.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="received-requests-page">
+
+    <div class="received-requests-heading">
+        <span class="received-requests-eyebrow">YOUR SKILL EXCHANGES</span>
+        <h1>Received Swap Requests</h1>
+        <p>Review requests from people interested in exchanging skills with you.</p>
+    </div>
+
+    <div class="received-requests-list">
+
+        {% for item in requests %}
+
+            <article class="received-request-card">
+
+                <div class="received-request-top">
+
+                    <div class="received-sender">
+                        <div class="received-sender-avatar">
+                            {{ item.sender.username|first|upper }}
+                        </div>
+
+                        <div>
+                            <span class="received-request-label">REQUEST FROM</span>
+                            <h3>{{ item.sender.username }}</h3>
+                        </div>
+                    </div>
+
+                    <span class="request-status">
+                        {{ item.status }}
+                    </span>
+
+                </div>
+
+                <div class="received-skill-details">
+
+                    <div class="received-skill-box">
+                        <span class="received-skill-label">WANTS TO LEARN</span>
+                        <h4>{{ item.requested_skill.name }}</h4>
+                    </div>
+
+                    <div class="received-skill-exchange">
+                        ↔
+                    </div>
+
+                    <div class="received-skill-box">
+                        <span class="received-skill-label">OFFERS TO TEACH</span>
+                        <h4>{{ item.offered_skill.name }}</h4>
+                    </div>
+
+                </div>
+
+                <div class="received-request-actions">
+
+                    <form method="POST" action="{% url 'update_request_status' item.id 'accept' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="accept-request-button">
+                            Accept Request
+                        </button>
+                    </form>
+
+                    <form method="POST" action="{% url 'update_request_status' item.id 'reject' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="reject-request-button">
+                            Reject
+                        </button>
+                    </form>
+
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <div class="received-requests-empty">
+
+                <div class="received-empty-icon">↔</div>
+
+                <h3>No Pending Requests</h3>
+
+                <p>You have no pending swap requests.</p>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

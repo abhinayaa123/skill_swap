@@ -1,0 +1,129 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_reviews.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="my-reviews-page">
+
+    <!-- PAGE HEADING -->
+
+    <div class="my-reviews-heading">
+        <span class="my-reviews-eyebrow">YOUR COMMUNITY FEEDBACK</span>
+        <h1>My Reviews</h1>
+        <p>See what others think about their skill exchange experience with you.</p>
+    </div>
+
+
+    <!-- RATING SUMMARY -->
+
+    <div class="rating-summary-card">
+
+        <div class="rating-summary-main">
+
+            <div class="rating-summary-icon">★</div>
+
+            <div>
+                <span class="rating-summary-label">YOUR AVERAGE RATING</span>
+
+                <div class="rating-value">
+                    {% if average_rating %}
+                        {{ average_rating|floatformat:1 }}
+                        <span>/ 5</span>
+                    {% else %}
+                        <span class="no-rating">No ratings yet</span>
+                    {% endif %}
+                </div>
+
+                {% if average_rating %}
+                    <div class="rating-stars">★★★★★</div>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div class="rating-summary-divider"></div>
+
+        <div class="rating-total">
+            <span class="rating-summary-label">TOTAL REVIEWS</span>
+            <strong>{{ total_reviews }}</strong>
+            <p>Reviews received</p>
+        </div>
+
+    </div>
+
+
+    <!-- REVIEWS LIST -->
+
+    <div class="reviews-list-section">
+
+        <div class="reviews-section-heading">
+            <h2>Reviews Received</h2>
+            <span>{{ total_reviews }} Reviews</span>
+        </div>
+
+        <div class="my-reviews-list">
+
+            {% for review in reviews %}
+
+                <article class="my-review-card">
+
+                    <div class="my-review-header">
+
+                        <div class="reviewer-details">
+
+                            <div class="reviewer-avatar">
+                                {{ review.reviewer.username|first|upper }}
+                            </div>
+
+                            <div>
+                                <span class="reviewer-label">REVIEWED BY</span>
+                                <h3>{{ review.reviewer.username }}</h3>
+                            </div>
+
+                        </div>
+
+                        <span class="review-rating">
+                            ★ {{ review.rating }}/5
+                        </span>
+
+                    </div>
+
+                    <div class="review-comment">
+                        <p>{{ review.comment|default:"No comment provided." }}</p>
+                    </div>
+
+                    <div class="review-date">
+                        {{ review.created_at }}
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="reviews-empty">
+
+                    <div class="reviews-empty-icon">★</div>
+
+                    <h3>No Reviews Yet</h3>
+
+                    <p>You haven't received any reviews yet.</p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+
+
+</section>
+
+{% endblock %}

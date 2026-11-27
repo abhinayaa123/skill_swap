@@ -1,0 +1,211 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/view_user_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="view-profile-page">
+
+    <!-- PROFILE HEADER -->
+
+    <div class="view-profile-header">
+
+        <div class="view-profile-avatar">
+
+            {% if profile and profile.profile_photo %}
+                <img src="{{ profile.profile_photo.url }}" alt="Profile Photo">
+            {% else %}
+                <span>{{ viewed_user.username|first|upper }}</span>
+            {% endif %}
+
+        </div>
+
+        <div class="view-profile-info">
+
+            <span class="view-profile-eyebrow">COMMUNITY MEMBER</span>
+
+            <h1>{{ viewed_user.username }}</h1>
+
+            <p class="view-profile-fullname">
+                {{ viewed_user.first_name }} {{ viewed_user.last_name }}
+            </p>
+
+            <p class="view-profile-bio">
+                {{ profile.bio|default:"No bio added yet." }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SKILLS SECTION -->
+
+    <div class="profile-skills-grid">
+
+        <div class="profile-section-card">
+
+            <div class="profile-section-heading">
+                <span class="profile-section-icon teach-icon">↗</span>
+                <div>
+                    <h2>Skills I Can Teach</h2>
+                    <p>Knowledge I can share with others</p>
+                </div>
+            </div>
+
+            <div class="profile-skill-list">
+
+                {% for item in skills_to_teach %}
+
+                    <div class="profile-skill-item">
+                        <div>
+                            <strong>{{ item.skill.name }}</strong>
+                            <span>{{ item.skill.category.name|default:"Uncategorized" }}</span>
+                        </div>
+                        <span class="skill-status">Teaching</span>
+                    </div>
+
+                {% empty %}
+
+                    <p class="profile-empty-text">
+                        No teaching skills added yet.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-section-card">
+
+            <div class="profile-section-heading">
+                <span class="profile-section-icon learn-icon">↙</span>
+                <div>
+                    <h2>Skills I Want to Learn</h2>
+                    <p>Skills I am interested in developing</p>
+                </div>
+            </div>
+
+            <div class="profile-skill-list">
+
+                {% for item in skills_to_learn %}
+
+                    <div class="profile-skill-item">
+                        <div>
+                            <strong>{{ item.skill.name }}</strong>
+                            <span>{{ item.skill.category.name|default:"Uncategorized" }}</span>
+                        </div>
+                        <span class="skill-status learn-status">Learning</span>
+                    </div>
+
+                {% empty %}
+
+                    <p class="profile-empty-text">
+                        No learning skills added yet.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RATINGS SUMMARY -->
+
+    <div class="profile-section-card profile-reviews-section">
+
+        <div class="profile-reviews-heading">
+            <div>
+                <span class="view-profile-eyebrow">COMMUNITY FEEDBACK</span>
+                <h2>Ratings & Reviews</h2>
+            </div>
+        </div>
+
+        <div class="profile-rating-summary">
+
+            <div class="rating-summary-item">
+                <span class="rating-summary-label">AVERAGE RATING</span>
+
+                <strong class="average-rating">
+                    {% if average_rating %}
+                        {{ average_rating|floatformat:1 }}<small>/5</small>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </strong>
+
+            </div>
+
+            <div class="rating-summary-divider"></div>
+
+            <div class="rating-summary-item">
+                <span class="rating-summary-label">TOTAL REVIEWS</span>
+                <strong class="total-review-count">{{ total_reviews }}</strong>
+            </div>
+
+        </div>
+
+
+        <!-- INDIVIDUAL REVIEWS -->
+
+        <div class="profile-review-list">
+
+            {% for review in reviews %}
+
+                <article class="profile-review-card">
+
+                    <div class="review-top">
+
+                        <div class="reviewer-avatar">
+                            {{ review.reviewer.username|first|upper }}
+                        </div>
+
+                        <div class="reviewer-details">
+                            <h3>{{ review.reviewer.username }}</h3>
+                            <span>{{ review.created_at }}</span>
+                        </div>
+
+                        <span class="review-rating">
+                            ★ {{ review.rating }}/5
+                        </span>
+
+                    </div>
+
+                    <p class="review-comment">
+                        {{ review.comment|default:"No comment provided." }}
+                    </p>
+
+                </article>
+
+            {% empty %}
+
+                <div class="profile-empty-reviews">
+                    <span>✦</span>
+                    <p>No reviews yet.</p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <!-- BACK LINK -->
+
+    <div class="view-profile-back">
+        <a href="{% url 'browse_skills' %}">← Back to Browse Skills</a>
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/manage_users.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="manage-users-page">
+
+    <div class="manage-users-header">
+        <h2>Manage Users</h2>
+
+        <a href="{% url 'admin_dashboard' %}" class="back-dashboard">
+            Back to Browse
+        </a>
+    </div>
+
+    <div class="users-table-section">
+
+        <div class="users-table-heading">
+            <h3>Registered Members</h3>
+            <span>USER ACCOUNTS</span>
+        </div>
+
+        <div class="users-table-wrapper">
+
+            <table class="users-table">
+
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Date Joined</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for user in users %}
+
+                    <tr>
+
+                        <td>
+                            <div class="user-name-cell">
+                                <span class="user-avatar">
+                                    {{ user.username|first }}
+                                </span>
+
+                                <span>{{ user.username }}</span>
+                            </div>
+                        </td>
+
+                        <td class="user-email">
+                            {{ user.email }}
+                        </td>
+
+                        <td class="user-date">
+                            {{ user.date_joined|date:"d M Y" }}
+                        </td>
+
+                        <td>
+                            {% if user.is_active %}
+                                <span class="user-status active">
+                                    Active
+                                </span>
+                            {% else %}
+                                <span class="user-status blocked">
+                                    Blocked
+                                </span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <form
+                                method="POST"
+                                action="{% url 'toggle_user_status' user.id %}"
+                                class="user-action-form"
+                            >
+                                {% csrf_token %}
+
+                                {% if user.is_active %}
+                                    <button type="submit" class="user-action-btn block">
+                                        Block
+                                    </button>
+                                {% else %}
+                                    <button type="submit" class="user-action-btn unblock">
+                                        Unblock
+                                    </button>
+                                {% endif %}
+
+                            </form>
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="5" class="users-empty">
+                            No users registered yet.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

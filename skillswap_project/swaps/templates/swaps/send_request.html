@@ -1,0 +1,116 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/send_swap_request.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="swap-request-page">
+
+    <div class="swap-request-card">
+
+        <div class="swap-request-heading">
+
+            <div class="swap-request-icon">
+                <svg viewBox="0 0 24 24" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 7H20L17 4" stroke="currentColor"
+                          stroke-width="1.8" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                    <path d="M17 17H4L7 20" stroke="currentColor"
+                          stroke-width="1.8" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                    <path d="M20 7L17 10M4 17L7 14"
+                          stroke="currentColor" stroke-width="1.8"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <span class="swap-request-eyebrow">SKILL EXCHANGE</span>
+
+            <h1>Send Swap Request</h1>
+
+            <p>Choose what you can teach in exchange for the skill you want to learn.</p>
+
+        </div>
+
+
+        <!-- REQUEST DETAILS -->
+
+        <div class="swap-request-details">
+
+            <div class="swap-detail-item">
+                <span class="swap-detail-label">REQUESTING FROM</span>
+                <strong>{{ receiver.username }}</strong>
+            </div>
+
+            <div class="swap-detail-divider"></div>
+
+            <div class="swap-detail-item">
+                <span class="swap-detail-label">SKILL I WANT TO LEARN</span>
+                <strong>{{ requested_skill.name }}</strong>
+            </div>
+
+        </div>
+
+
+        <!-- EXCHANGE INDICATOR -->
+
+        <div class="swap-exchange-indicator">
+            <span>LEARN</span>
+            <div class="exchange-line"></div>
+            <span>TEACH</span>
+        </div>
+
+
+        <!-- REQUEST FORM -->
+
+        <form method="POST" class="swap-request-form">
+
+            {% csrf_token %}
+
+            <label for="offered_skill">
+                Select the skill you can teach in exchange
+            </label>
+
+            <select name="offered_skill" id="offered_skill" required>
+                {% for item in offered_skills %}
+                    <option value="{{ item.skill.id }}">
+                        {{ item.skill.name }}
+                    </option>
+                {% empty %}
+                    <option value="">No teaching skills available</option>
+                {% endfor %}
+            </select>
+
+            {% if offered_skills %}
+
+                <button type="submit" class="swap-request-submit">
+                    Send Request
+                    <span>→</span>
+                </button>
+
+            {% else %}
+
+                <div class="swap-no-skills">
+                    <span>!</span>
+                    <p>Please add a teaching skill before sending a request.</p>
+                </div>
+
+            {% endif %}
+
+        </form>
+
+
+        <div class="swap-request-back">
+            <a href="{% url 'browse_skills' %}">← Back to Browse Skills</a>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

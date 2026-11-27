@@ -1,0 +1,206 @@
+
+/* SCHEDULE SESSION PAGE */
+
+.schedule-page {
+    min-height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background: #faf8f5;
+}
+
+.schedule-card {
+    width: 100%;
+    max-width: 620px;
+    padding: 42px;
+    background: #ffffff;
+    border: 1px solid #e7e5e4;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(28, 25, 23, 0.05);
+}
+
+.schedule-heading {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.schedule-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #758850;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.schedule-heading h2 {
+    margin: 0 0 10px;
+    color: #1c1917;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.schedule-heading p {
+    margin: 0;
+    color: #78716c;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* EXCHANGE DETAILS */
+
+.exchange-details {
+    margin-bottom: 28px;
+    padding: 20px;
+    border: 1px solid #e2e9df;
+    border-radius: 12px;
+    background: #f8faf7;
+}
+
+.exchange-label {
+    display: block;
+    margin-bottom: 14px;
+    color: #758850;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.exchange-skills {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    flex-wrap: wrap;
+}
+
+.exchange-skill {
+    padding: 9px 15px;
+    border: 1px solid #dce7be;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #304c35;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.exchange-arrow {
+    color: #758850;
+    font-size: 20px;
+}
+
+/* FORM */
+
+.schedule-form p {
+    margin: 0 0 20px;
+}
+
+.schedule-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #304c35;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.schedule-form input,
+.schedule-form select,
+.schedule-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d6dfd3;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1c1917;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.schedule-form input:focus,
+.schedule-form select:focus,
+.schedule-form textarea:focus {
+    border-color: #758850;
+    box-shadow: 0 0 0 3px rgba(117, 136, 80, 0.12);
+}
+
+.schedule-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.schedule-form .helptext {
+    display: block;
+    margin-top: 6px;
+    color: #7a8679;
+    font-size: 12px;
+}
+
+.schedule-form ul.errorlist {
+    margin: 5px 0;
+    padding-left: 18px;
+    color: #b45309;
+    font-size: 12px;
+}
+
+/* BUTTON */
+
+.save-session-btn {
+    width: 100%;
+    min-height: 49px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 9px;
+    background: #14532d;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.save-session-btn:hover {
+    background: #166534;
+    transform: translateY(-2px);
+}
+
+/* BACK LINK */
+
+.back-swaps-link {
+    display: block;
+    width: fit-content;
+    margin: 22px auto 0;
+    color: #526f43;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.back-swaps-link:hover {
+    color: #14532d;
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    .schedule-page {
+        padding: 30px 15px;
+    }
+
+    .schedule-card {
+        padding: 28px 20px;
+    }
+
+    .schedule-heading h2 {
+        font-size: 23px;
+    }
+
+    .exchange-skills {
+        gap: 8px;
+    }
+}

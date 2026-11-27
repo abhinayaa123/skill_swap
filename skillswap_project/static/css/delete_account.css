@@ -1,0 +1,134 @@
+
+/* DELETE ACCOUNT PAGE */
+
+.delete-account-page {
+    min-height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 55px 20px;
+    background: #faf8f5;
+}
+
+.delete-account-card {
+    width: 100%;
+    max-width: 520px;
+    padding: 45px 42px;
+    background: #ffffff;
+    border: 1px solid #e7e5e4;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(28, 25, 23, 0.06);
+}
+
+.delete-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fef2e8;
+    color: #b45309;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.delete-label {
+    display: block;
+    margin-bottom: 12px;
+    color: #758850;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.delete-account-card h2 {
+    margin: 0 0 18px;
+    color: #1c1917;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.delete-question {
+    margin: 0 0 12px;
+    color: #304c35;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+.delete-description {
+    margin: 0 auto 30px;
+    max-width: 390px;
+    color: #57534e;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.delete-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.delete-actions form {
+    width: 100%;
+}
+
+.confirm-delete-btn,
+.cancel-delete-btn {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.confirm-delete-btn {
+    border: 1px solid #b45309;
+    background: #b45309;
+    color: #ffffff;
+}
+
+.confirm-delete-btn:hover {
+    background: #92400e;
+    border-color: #92400e;
+    transform: translateY(-2px);
+}
+
+.cancel-delete-btn {
+    border: 1px solid #d6dfd3;
+    background: #f8faf7;
+    color: #304c35;
+}
+
+.cancel-delete-btn:hover {
+    background: #e8f1ea;
+    border-color: #758850;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    .delete-account-page {
+        padding: 35px 16px;
+    }
+
+    .delete-account-card {
+        padding: 35px 23px;
+    }
+
+    .delete-account-card h2 {
+        font-size: 23px;
+    }
+}

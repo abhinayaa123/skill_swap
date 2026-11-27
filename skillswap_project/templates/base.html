@@ -1,0 +1,143 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillSwap</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_css %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a href="{% url 'guest_home' %}" class="brand" aria-label="SkillSwap Home">
+
+                <svg class="brand-logo" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="44" height="44" rx="14" fill="#14532d"/>
+                    <circle cx="17" cy="18" r="5" fill="#bbf7d0"/>
+                    <circle cx="27" cy="26" r="5" fill="#86efac"/>
+                    <path d="M19 23L25 21" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+
+                <span class="brand-wordmark">Skill<span class="brand-highlight">Swap</span></span>
+
+            </a>
+
+            {% if request.resolver_match.url_name != 'delete_account' %}
+
+            <nav class="main-nav">
+                {% if user.is_authenticated and user.is_staff or user.is_authenticated and user.is_superuser %}
+                 <a href="{% url 'user_home' %}">Home</a>
+                  <a href="{% url 'admin_browse_skills' %}">Browse Skills</a>
+                 <a href="{% url 'manage_users' %}">Manage Users</a>
+                 <a href="{% url 'manage_skills' %}">Manage Skills</a>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+
+                    {% if not user.is_staff and not user.is_superuser %}
+
+                        {% if request.resolver_match.url_name != 'user_home' %}
+                            <a href="{% url 'user_home' %}">Home</a>
+                        {% endif %}
+
+                        <a href="{% url 'browse_skills' %}">Browse Skills</a>
+                        <a href="{% url 'received_requests' %}">Received Requests</a>
+                        <a href="{% url 'my_swaps' %}">My Swaps</a>
+                        <a href="{% url 'sent_requests' %}">Request History</a>
+                        <a href="{% url 'my_reviews' %}">My Reviews</a>
+                        <a href="{% url 'profile' %}" class="profile-nav-link" title="My Profile">
+                        <svg viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="8" r="4"
+                                    stroke="currentColor" stroke-width="1.7"/>
+                            <path d="M4.5 20C4.5 16.4 7.5 14 12 14C16.5 14 19.5 16.4 19.5 20"
+                                stroke="currentColor" stroke-width="1.7"
+                                stroke-linecap="round"/>
+                        </svg>
+                        <span>My Profile</span>
+                    </a>
+
+                    {% endif %}
+
+                    <form method="POST" action="{% url 'user_logout' %}" class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-button">Logout</button>
+                    </form>
+
+                {% endif %}
+
+            </nav>
+
+            {% endif %}
+
+        </div>
+
+    </header>
+
+
+    <main class="main-container">
+
+        {% if messages %}
+            <div class="messages-container">
+
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+            </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="footer-content">
+
+            <a href="{% url 'guest_home' %}" class="footer-brand">
+
+                <svg class="footer-logo" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="44" height="44" rx="14" fill="#14532d"/>
+                    <circle cx="17" cy="18" r="5" fill="#bbf7d0"/>
+                    <circle cx="27" cy="26" r="5" fill="#86efac"/>
+                    <path d="M19 23L25 21" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+
+                <span>SkillSwap</span>
+
+            </a>
+
+            <p>Learn Together. Grow Together.</p>
+
+            <span class="footer-copyright">
+                © 2026 SkillSwap. All rights reserved.
+            </span>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

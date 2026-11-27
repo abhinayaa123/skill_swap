@@ -1,0 +1,100 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin_browse_skill.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="browse-page">
+
+    <div class="browse-heading">
+        <span class="browse-eyebrow">SKILLSWAP / ADMINISTRATION</span>
+        <h1>Browse <span>Skills</span></h1>
+        <p>View all skills offered by SkillSwap members.</p>
+    </div>
+
+    <div class="browse-search-card">
+        <form method="GET" class="admin-search-form">
+    
+            <input
+                type="text"
+                name="search"
+                placeholder="Search skills..."
+                value="{{ search_query }}"
+            >
+
+            <button type="submit" class="browse-search-button">
+                Search <span>→</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="browse-results">
+
+        {% for item in skills %}
+
+            <article class="skill-card">
+
+                <div class="skill-card-top">
+                    <span class="skill-card-label">SKILL OFFERED</span>
+                    <span class="skill-card-icon">✦</span>
+                </div>
+
+                <h3>{{ item.skill.name }}</h3>
+
+                <p class="skill-category">
+                    {{ item.skill.category|default:"Uncategorized" }}
+                </p>
+
+                <div class="skill-card-divider"></div>
+
+                <div class="skill-teacher">
+                    <div class="teacher-avatar">
+                        {{ item.user.username|first|upper }}
+                    </div>
+
+                    <div class="teacher-details">
+                        <span class="teacher-label">TEACHER</span>
+                        <strong>{{ item.user.username }}</strong>
+                    </div>
+                </div>
+
+                <div class="skill-rating">
+                    {% if item.average_rating %}
+                        <span class="rating-star">★</span>
+                        <strong>{{ item.average_rating|floatformat:1 }}/5</strong>
+                        <span>({{ item.total_reviews }} reviews)</span>
+                    {% else %}
+                        <span class="new-member">New Member</span>
+                        <span>No reviews yet</span>
+                    {% endif %}
+                </div>
+
+                <div class="skill-card-actions">
+                    <a href="{% url 'view_user_profile' item.user.id %}"
+                       class="view-profile-button">
+                        View Profile
+                    </a>
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <div class="browse-empty">
+                <div class="empty-icon">✦</div>
+                <h3>No skills available</h3>
+                <p>No skills found. Try a different search.</p>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+</section>
+
+{% endblock %}

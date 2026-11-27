@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="{% url 'guest_home' %}">Back to Home</a>
+
+<h2>Browse Available Skills</h2>
+
+<p>Find people who can teach the skill you want to learn.</p>
+
+<p>Login is required to send a skill swap request.</p>
+
+<form method="GET">
+
+    <label>Skill I Want to Learn:</label>
+    <input
+        type="text"
+        name="learn"
+        placeholder="e.g. Python"
+        value="{{ learn_query }}"
+        required
+    >
+
+    <label>Skill I Can Teach:</label>
+    <input
+        type="text"
+        name="teach"
+        placeholder="e.g. Dance"
+        value="{{ teach_query }}"
+        required
+    >
+
+    <button type="submit">Find Matching Users</button>
+
+</form>
+
+<hr>
+
+{% for item in skills %}
+
+    <div>
+        <h3>{{ item.skill.name }}</h3>
+
+        <p>
+            <strong>Category:</strong>
+            {{ item.skill.category|default:"Uncategorized" }}
+        </p>
+
+        <p><strong>Teacher:</strong> {{ item.user.username }}</p>
+
+        {% if item.average_rating %}
+            <p>
+                <strong>Rating:</strong>
+                ★ {{ item.average_rating|floatformat:1 }}/5
+                ({{ item.total_reviews }} reviews)
+            </p>
+        {% else %}
+            <p>New Member - No reviews yet</p>
+        {% endif %}
+
+        <a href="{% url 'user_login' %}">Login to Request This Skill</a>
+    </div>
+
+    <hr>
+
+{% empty %}
+
+    <p>No matching skills available at the moment.</p>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,137 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/browse_skills.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="browse-page">
+
+    <div class="browse-heading">
+        <span class="browse-eyebrow">DISCOVER & CONNECT</span>
+        <h1>Explore <span>Skills</span></h1>
+        <p>Find people who can teach what you want to learn and share what you know.</p>
+    </div>
+
+
+    <div class="browse-search-card">
+
+        <form method="GET" class="browse-search-form">
+
+            <div class="browse-field">
+                <label for="learn">Skill I Want to Learn</label>
+                <input
+                    type="text"
+                    id="learn"
+                    name="learn"
+                    placeholder="e.g. Python"
+                    value="{{ learn_query }}"
+                    required
+                >
+            </div>
+
+            <div class="browse-field">
+                <label for="teach">Skill I Can Teach</label>
+                <input
+                    type="text"
+                    id="teach"
+                    name="teach"
+                    placeholder="e.g. Dance"
+                    value="{{ teach_query }}"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="browse-search-button">
+                Find Matching Users
+                <span>→</span>
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="browse-results-heading">
+        <div>
+            <h2>Available Skills</h2>
+            <p>Explore opportunities to exchange knowledge.</p>
+        </div>
+    </div>
+
+
+    <div class="browse-results">
+
+        {% for item in skills %}
+
+            <article class="skill-card">
+
+                <div class="skill-card-top">
+                    <span class="skill-card-label">SKILL OFFERED</span>
+                    <span class="skill-card-icon">✦</span>
+                </div>
+
+                <h3>{{ item.skill.name }}</h3>
+
+                <p class="skill-category">
+                    {{ item.skill.category|default:"Uncategorized" }}
+                </p>
+
+                <div class="skill-card-divider"></div>
+
+                <div class="skill-teacher">
+                    <div class="teacher-avatar">
+                        {{ item.user.username|first|upper }}
+                    </div>
+
+                    <div class="teacher-details">
+                        <span class="teacher-label">TEACHER</span>
+                        <strong>{{ item.user.username }}</strong>
+                    </div>
+                </div>
+
+                <div class="skill-rating">
+                    {% if item.average_rating %}
+                        <span class="rating-star">★</span>
+                        <strong>{{ item.average_rating|floatformat:1 }}/5</strong>
+                        <span>({{ item.total_reviews }} reviews)</span>
+                    {% else %}
+                        <span class="new-member">New Member</span>
+                        <span>No reviews yet</span>
+                    {% endif %}
+                </div>
+
+                <div class="skill-card-actions">
+
+                    <a href="{% url 'view_user_profile' item.user.id %}"
+                       class="view-profile-button">
+                        View Profile
+                    </a>
+
+                    <a href="{% url 'send_swap_request' item.user.id item.skill.id %}"
+                       class="send-request-button">
+                        Send Swap Request
+                    </a>
+
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <div class="browse-empty">
+                <div class="empty-icon">✦</div>
+                <h3>No skills available</h3>
+                <p>No matching skills are available at the moment. Try different skills.</p>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

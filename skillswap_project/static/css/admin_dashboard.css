@@ -1,0 +1,303 @@
+
+/* ==========================================
+   SKILLSWAP ADMIN HOME
+   Design matching User Home screenshot
+========================================== */
+
+.admin-home {
+    position: relative;
+    min-height: 490px;
+    margin: 38px auto 30px;
+    padding: 65px 30px;
+    max-width: 1450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid #e2e9df;
+    border-radius: 25px;
+    background: linear-gradient(
+        115deg,
+        #f5f8f5 0%,
+        #e9f2eb 48%,
+        #dce8ca 100%
+    );
+    text-align: center;
+}
+
+/* Main content */
+
+.admin-home-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Overline */
+
+.admin-overline {
+    margin-bottom: 30px;
+    color: #526531;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    line-height: 1.6;
+}
+
+/* Logo-style symbol */
+
+.admin-logo-mark {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    background: #14532d;
+    box-shadow: 0 12px 25px rgba(20, 83, 45, 0.14);
+}
+
+.admin-logo-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #bbf7d0;
+}
+
+.admin-dot-one {
+    top: 21px;
+    left: 21px;
+}
+
+.admin-dot-two {
+    right: 20px;
+    bottom: 20px;
+    background: #86efac;
+}
+
+.admin-logo-line {
+    position: absolute;
+    width: 23px;
+    height: 4px;
+    border-radius: 5px;
+    background: #ffffff;
+    transform: rotate(-25deg);
+}
+
+/* Main heading */
+
+.admin-home h1 {
+    margin: 0 0 25px;
+    color: #121f0d;
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -2px;
+}
+
+.admin-home h1 span {
+    color: #14532d;
+}
+
+/* Description */
+
+.admin-home p {
+    max-width: 810px;
+    margin: 0 auto 38px;
+    color: #57534e;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.9;
+}
+
+/* Browse Skills button */
+
+.admin-home .btn {
+    min-width: 225px;
+    min-height: 54px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    background: #14532d;
+    color: #ffffff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(20, 83, 45, 0.12);
+    transition: all 0.3s ease;
+}
+
+.admin-home .btn:hover {
+    transform: translateY(-3px);
+    background: #166534;
+    color: #ffffff;
+    box-shadow: 0 12px 25px rgba(20, 83, 45, 0.2);
+    text-decoration: none;
+}
+
+.admin-btn-arrow {
+    font-size: 19px;
+    transition: transform 0.3s ease;
+}
+
+.admin-home .btn:hover .admin-btn-arrow {
+    transform: translateX(5px);
+}
+
+/* Decorative background circles */
+
+.admin-decoration-circle {
+    position: absolute;
+    z-index: 0;
+    top: -115px;
+    right: -5px;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: rgba(185, 199, 152, 0.25);
+}
+
+.admin-decoration-small {
+    position: absolute;
+    z-index: 0;
+    right: 13%;
+    bottom: -65px;
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    background: rgba(220, 231, 190, 0.5);
+}
+
+/* Keyboard accessibility */
+
+.admin-home .btn:focus-visible {
+    outline: 3px solid #98a973;
+    outline-offset: 4px;
+}
+
+/* ==========================================
+   TABLET RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .admin-home {
+        min-height: 450px;
+        margin: 25px 18px;
+        padding: 55px 25px;
+        border-radius: 20px;
+    }
+
+    .admin-overline {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .admin-logo-mark {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 28px;
+        border-radius: 21px;
+    }
+
+    .admin-home h1 {
+        font-size: 40px;
+        letter-spacing: -1.5px;
+    }
+
+    .admin-home p {
+        font-size: 15px;
+    }
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+@media (max-width: 480px) {
+
+    .admin-home {
+        min-height: 420px;
+        margin: 18px 12px;
+        padding: 45px 20px;
+        border-radius: 17px;
+    }
+
+    .admin-overline {
+        max-width: 290px;
+        margin-bottom: 25px;
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    .admin-logo-mark {
+        width: 65px;
+        height: 65px;
+        margin-bottom: 25px;
+        border-radius: 19px;
+    }
+
+    .admin-logo-dot {
+        width: 17px;
+        height: 17px;
+    }
+
+    .admin-dot-one {
+        top: 17px;
+        left: 17px;
+    }
+
+    .admin-dot-two {
+        right: 17px;
+        bottom: 17px;
+    }
+
+    .admin-home h1 {
+        margin-bottom: 18px;
+        font-size: 32px;
+        letter-spacing: -1px;
+    }
+
+    .admin-home p {
+        margin-bottom: 28px;
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .admin-home .btn {
+        min-width: 190px;
+        min-height: 49px;
+        padding: 13px 24px;
+        font-size: 13px;
+    }
+
+    .admin-decoration-circle {
+        top: -90px;
+        right: -100px;
+        width: 190px;
+        height: 190px;
+    }
+
+    .admin-decoration-small {
+        right: 8%;
+        bottom: -55px;
+        width: 90px;
+        height: 90px;
+    }
+}

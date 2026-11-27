@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/skillswap_home.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="ss-editorial">
+  <section class="ss-banner">
+    <div class="ss-wrap ss-banner-grid">
+      <div class="ss-banner-copy">
+        <div class="ss-brand-lockup">
+          <svg class="ss-mark" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="44" height="44" rx="14" fill="#14532d" />
+            <circle cx="17" cy="18" r="5" fill="#bbf7d0" />
+            <circle cx="27" cy="26" r="5" fill="#86efac" />
+            <path d="M19 23L25 21" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+          </svg>
+          <span class="ss-wordmark">SkillSwap</span>
+        </div>
+
+        <h1>Welcome to SkillSwap!</h1>
+        <h3>Learn Together. Grow Together.</h3>
+        <p>
+          SkillSwap is a web-based platform designed to help people share their knowledge, teach skills they already possess, and learn new skills from others. The platform provides an opportunity for users to connect with people who have different skills and interests.
+        </p>
+
+        <div class="ss-btn-row">
+          <a href="{% url 'user_login' %}" class="ss-btn ss-btn-solid">Login</a>
+          <a href="{% url 'register' %}" class="ss-btn ss-btn-soft">Register</a>
+          <a href="{% url 'guest_browse_skills' %}" class="ss-btn ss-btn-outline">Browse Skills</a>
+        </div>
+      </div>
+
+      <div class="ss-swap-board" aria-label="Skill Swap Examples">
+        <span class="ss-board-kicker">Skill Swap Examples</span>
+        <h2>Learn One Skill, Teach Another</h2>
+
+        <div class="ss-pair-item">
+          <span class="ss-pill">Learn: Python</span>
+          <span class="ss-arrow">&harr;</span>
+          <span class="ss-pill ss-pill-alt">Teach: English</span>
+        </div>
+
+        <div class="ss-pair-item">
+          <span class="ss-pill">Learn: Excel</span>
+          <span class="ss-arrow">&harr;</span>
+          <span class="ss-pill ss-pill-alt">Teach: Public Speaking</span>
+        </div>
+
+        <div class="ss-pair-item">
+          <span class="ss-pill">Learn: UI Design</span>
+          <span class="ss-arrow">&harr;</span>
+          <span class="ss-pill ss-pill-alt">Teach: Data Analysis</span>
+        </div>
+
+        <p class="ss-board-note">
+          Connect with someone whose strengths match what you want to learn—and teach what you already know in return.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ss-band ss-band-how">
+    <div class="ss-wrap ss-two-col">
+      <div>
+        <span class="ss-label">How It Works</span>
+        <h2>Share What You Know, Learn What You Don't</h2>
+        <p class="ss-lead">
+          Everyone has skills they can teach and new skills they want to pick up. SkillSwap brings those people together.
+        </p>
+      </div>
+
+      <div class="ss-stack">
+        <article class="ss-row-card">
+          <h3>Teach a Skill You Already Have</h3>
+          <p>Help someone with a language, subject, tool, or everyday skill you already know well.</p>
+        </article>
+
+        <article class="ss-row-card">
+          <h3>Learn a New Skill From Someone Else</h3>
+          <p>Get guidance on topics you want to build—such as coding, design, music, or spreadsheets.</p>
+        </article>
+
+        <article class="ss-row-card">
+          <h3>Connect Across Different Interests</h3>
+          <p>Meet people with different backgrounds and skills so both sides can learn and grow together.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ss-band ss-band-tinted">
+    <div class="ss-wrap">
+      <div class="ss-heading-center">
+        <span class="ss-label">Sample Skill Swaps</span>
+        <h2>Examples of Skills People Swap</h2>
+        <p class="ss-lead">
+          One person learns a skill they are aiming for while teaching a skill they already master.
+        </p>
+      </div>
+
+      <div class="ss-pairs-grid">
+        <article class="ss-exchange-card">
+          <div class="ss-exchange-sides">
+            <strong>Learn Python</strong>
+            <span>Swap</span>
+            <strong>Teach English</strong>
+          </div>
+          <p>Learn Python basics and problem-solving from a partner while helping them practice spoken or written English.</p>
+        </article>
+
+        <article class="ss-exchange-card">
+          <div class="ss-exchange-sides">
+            <strong>Learn Graphic Design</strong>
+            <span>Swap</span>
+            <strong>Teach Excel</strong>
+          </div>
+          <p>Pick up layout and visual design tips while teaching someone formulas, charts, and spreadsheet shortcuts.</p>
+        </article>
+
+        <article class="ss-exchange-card">
+          <div class="ss-exchange-sides">
+            <strong>Learn Web Basics</strong>
+            <span>Swap</span>
+            <strong>Teach Presentation Skills</strong>
+          </div>
+          <p>Learn HTML and CSS fundamentals while coaching your partner on speaking clearly and structuring slides.</p>
+        </article>
+
+        <article class="ss-exchange-card">
+          <div class="ss-exchange-sides">
+            <strong>Learn Time Management</strong>
+            <span>Swap</span>
+            <strong>Teach Photography</strong>
+          </div>
+          <p>Build practical planning habits while sharing camera settings, framing, and photo editing tips.</p>
+        </article>
+      </div>
+
+      <div class="ss-footer-cta">
+        <p>Browse available skills right away or create an account to start swapping.</p>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

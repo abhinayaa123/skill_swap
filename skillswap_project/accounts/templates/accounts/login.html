@@ -1,0 +1,97 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="login-page">
+
+    <div class="login-card">
+
+        <div class="login-heading">
+
+            <div class="login-brand-mark">
+                <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="44" height="44" rx="14" fill="#14532d"/>
+                    <circle cx="17" cy="18" r="5" fill="#bbf7d0"/>
+                    <circle cx="27" cy="26" r="5" fill="#86efac"/>
+                    <path d="M19 23L25 21" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <span class="login-eyebrow">WELCOME BACK</span>
+
+            <h2>Login to SkillSwap</h2>
+
+            <p>Continue your journey of sharing knowledge and learning new skills.</p>
+
+        </div>
+
+
+        <form method="POST" class="login-form">
+
+            {% csrf_token %}
+
+            <div class="login-field">
+
+                <label for="username">Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="login-field">
+
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit" class="login-submit">
+                Login to Your Account
+                <span>→</span>
+            </button>
+
+        </form>
+
+
+        <div class="login-register">
+
+            <p>
+                Don't have an account?
+                <a href="{% url 'register' %}">Register</a>
+            </p>
+
+        </div>
+
+
+        <div class="login-back">
+            <a href="{% url 'guest_home' %}">← Back to Home</a>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

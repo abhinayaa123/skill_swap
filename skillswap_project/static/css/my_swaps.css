@@ -1,0 +1,593 @@
+
+/* ==========================================
+   SKILLSWAP - MY SWAPS
+========================================== */
+
+.my-swaps-page {
+    width: 100%;
+    padding: 40px 10px 60px;
+}
+
+/* PAGE HEADING */
+
+.my-swaps-heading {
+    margin-bottom: 30px;
+}
+
+.my-swaps-eyebrow {
+    display: block;
+    color: #758850;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1.5px;
+    margin-bottom: 9px;
+}
+
+.my-swaps-heading h1 {
+    color: #14532d;
+    font-size: 27px;
+    font-weight: 750;
+    letter-spacing: -0.6px;
+    margin-bottom: 9px;
+}
+
+.my-swaps-heading p {
+    color: #7a8679;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* SWAP LIST */
+
+.my-swaps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* SWAP CARD */
+
+.my-swap-card {
+    padding: 26px;
+
+    background: #ffffff;
+    border: 1px solid #e2e9df;
+    border-radius: 15px;
+
+    box-shadow: 0 5px 18px rgba(28, 55, 32, 0.035);
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.my-swap-card:hover {
+    border-color: #c8d8c3;
+    box-shadow: 0 8px 24px rgba(28, 55, 32, 0.06);
+}
+
+/* SWAP HEADER */
+
+.my-swap-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding-bottom: 20px;
+    border-bottom: 1px solid #edf0eb;
+}
+
+.my-swap-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.my-swap-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e4f1e5;
+    color: #14532d;
+
+    border-radius: 12px;
+    font-size: 22px;
+}
+
+.my-swap-label {
+    display: block;
+    color: #8a9688;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 1.1px;
+    margin-bottom: 5px;
+}
+
+.my-swap-title h3 {
+    color: #304c35;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* STATUS BADGES */
+
+.my-swap-status {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.status-pending {
+    background: #f3f0df;
+    color: #80713b;
+}
+
+.status-accepted {
+    background: #e4f1e5;
+    color: #14532d;
+}
+
+.status-rejected {
+    background: #fff0ed;
+    color: #a34c45;
+}
+
+.status-cancelled {
+    background: #f1f1ef;
+    color: #77766f;
+}
+
+.status-completed {
+    background: #e8f1ea;
+    color: #304c35;
+}
+
+/* SKILL DETAILS */
+
+.my-swap-skills {
+    display: grid;
+    grid-template-columns: 1fr 35px 1fr;
+    align-items: center;
+    gap: 12px;
+
+    padding: 23px 0;
+}
+
+.my-swap-skill-box {
+    min-height: 85px;
+    padding: 16px;
+
+    background: #f8faf7;
+    border: 1px solid #edf0eb;
+    border-radius: 10px;
+}
+
+.my-swap-skill-box > span {
+    display: block;
+    color: #758850;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 0.7px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.my-swap-skill-box h4 {
+    color: #304c35;
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.my-swap-exchange-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #758850;
+    font-size: 23px;
+}
+
+/* COMMON SECTIONS */
+
+.my-swap-section {
+    padding: 21px 0;
+    border-top: 1px solid #edf0eb;
+}
+
+.my-swap-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 18px;
+}
+
+.section-icon {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e4f1e5;
+    color: #14532d;
+
+    border-radius: 9px;
+    font-size: 17px;
+}
+
+.my-swap-section-heading h4 {
+    color: #304c35;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* SESSION DETAILS */
+
+.session-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.session-detail {
+    padding: 14px;
+
+    background: #f8faf7;
+    border: 1px solid #edf0eb;
+    border-radius: 9px;
+}
+
+.session-detail span {
+    display: block;
+    color: #8a9688;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+}
+
+.session-detail strong {
+    color: #304c35;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+/* SESSION LINKS AND CONFIRMATION */
+
+.join-session-button {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 9px 15px;
+
+    background: #e4f1e5;
+    color: #14532d;
+
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 650;
+    text-decoration: none;
+
+    transition: background 0.2s ease;
+}
+
+.join-session-button:hover {
+    background: #d2e7d3;
+}
+
+.session-confirmation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    padding: 13px 15px;
+
+    background: #f8faf7;
+    border-radius: 8px;
+
+    color: #687568;
+    font-size: 11px;
+}
+
+.confirmation-done {
+    color: #287344 !important;
+}
+
+.confirmation-waiting {
+    color: #9a8042 !important;
+}
+
+/* SESSION ACTIONS */
+
+.session-action {
+    margin-top: 14px;
+}
+
+.session-action form {
+    margin: 0;
+}
+
+.session-not-scheduled {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 16px;
+
+    background: #f8faf7;
+    border: 1px solid #edf0eb;
+    border-radius: 10px;
+}
+
+.session-not-scheduled strong {
+    display: block;
+    color: #304c35;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.session-not-scheduled p {
+    color: #8a9688;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* ACTION BUTTONS */
+
+.secondary-action-button {
+    display: inline-block;
+    padding: 10px 17px;
+
+    background: #14532d;
+    color: #ffffff;
+    border: 1px solid #14532d;
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 650;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.secondary-action-button:hover {
+    background: #287344;
+    border-color: #287344;
+}
+
+.session-action button {
+    font-family: inherit;
+}
+
+/* COMPLETION CONFIRMATION */
+
+.completion-confirmations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.completion-person {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    padding: 14px;
+
+    background: #f8faf7;
+    border: 1px solid #edf0eb;
+    border-radius: 9px;
+}
+
+.completion-person span {
+    color: #687568;
+    font-size: 11px;
+}
+
+.completion-person strong {
+    font-size: 11px;
+}
+
+.my-swap-section form {
+    margin: 0;
+}
+
+.completion-button {
+    padding: 11px 19px;
+
+    background: #14532d;
+    color: #ffffff;
+    border: 1px solid #14532d;
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 650;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.completion-button:hover {
+    background: #287344;
+    border-color: #287344;
+}
+
+/* REVIEW SECTION */
+
+.my-swap-review {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    padding: 19px;
+
+    background: #edf4ee;
+    border: 1px solid #dce7dc;
+    border-radius: 10px;
+}
+
+.my-swap-review strong {
+    display: block;
+    color: #14532d;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.my-swap-review p {
+    color: #758075;
+    font-size: 11px;
+}
+
+.review-swap-button {
+    padding: 10px 17px;
+
+    background: #14532d;
+    color: #ffffff;
+
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 650;
+    text-decoration: none;
+
+    transition: background 0.2s ease;
+}
+
+.review-swap-button:hover {
+    background: #287344;
+}
+
+.my-swap-review .review-already-done {
+    color: #287344;
+    font-weight: 650;
+}
+
+/* EMPTY STATE */
+
+.my-swaps-empty {
+    padding: 65px 20px;
+
+    background: #ffffff;
+    border: 1px dashed #d5e1d2;
+    border-radius: 14px;
+
+    text-align: center;
+}
+
+.my-swaps-empty-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    background: #e4f1e5;
+    color: #14532d;
+
+    border-radius: 50%;
+    font-size: 25px;
+}
+
+.my-swaps-empty h3 {
+    color: #304c35;
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.my-swaps-empty p {
+    color: #8a9688;
+    font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .my-swaps-page {
+        padding: 25px 0 40px;
+    }
+
+    .my-swaps-heading h1 {
+        font-size: 23px;
+    }
+
+    .my-swap-card {
+        padding: 18px;
+    }
+
+    .my-swap-skills {
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    .my-swap-exchange-icon {
+        transform: rotate(90deg);
+        font-size: 19px;
+    }
+
+    .session-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .completion-confirmations {
+        grid-template-columns: 1fr;
+    }
+
+    .session-not-scheduled {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .my-swap-review {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .review-swap-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .my-swap-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .history-status {
+        align-self: flex-start;
+    }
+
+    .session-confirmation {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .completion-person {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

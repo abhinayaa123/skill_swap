@@ -1,0 +1,99 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/request_history.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="request-history-page">
+
+    <div class="request-history-heading">
+        <span class="request-history-eyebrow">YOUR ACTIVITY</span>
+        <h1>Request History</h1>
+        <p>Keep track of the skill exchange requests you have sent.</p>
+    </div>
+
+    <div class="request-history-list">
+
+        {% for item in requests %}
+
+            <article class="history-request-card">
+
+                <div class="history-request-top">
+
+                    <div class="history-receiver">
+                        <div class="history-receiver-avatar">
+                            {{ item.receiver.username|first|upper }}
+                        </div>
+
+                        <div>
+                            <span class="history-request-label">REQUEST SENT TO</span>
+                            <h3>{{ item.receiver.username }}</h3>
+                        </div>
+                    </div>
+
+                    <span class="history-status status-{{ item.status|lower }}">
+                        {{ item.get_status_display }}
+                    </span>
+
+                </div>
+
+                <div class="history-skill-details">
+
+                    <div class="history-skill-box">
+                        <span class="history-skill-label">SKILL I WANT TO LEARN</span>
+                        <h4>{{ item.requested_skill.name }}</h4>
+                    </div>
+
+                    <div class="history-exchange-icon">↔</div>
+
+                    <div class="history-skill-box">
+                        <span class="history-skill-label">SKILL I OFFER TO TEACH</span>
+                        <h4>{{ item.offered_skill.name }}</h4>
+                    </div>
+
+                </div>
+
+                {% if item.status == 'PENDING' %}
+
+                    <div class="history-request-footer">
+
+                        <span class="history-pending-note">
+                            Waiting for the receiver's response
+                        </span>
+
+                        <form method="POST" action="{% url 'cancel_request' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="cancel-request-button">
+                                Cancel Request
+                            </button>
+                        </form>
+
+                    </div>
+
+                {% endif %}
+
+            </article>
+
+        {% empty %}
+
+            <div class="request-history-empty">
+
+                <div class="history-empty-icon">↔</div>
+
+                <h3>No Request History Yet</h3>
+
+                <p>You haven't sent any requests yet.</p>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

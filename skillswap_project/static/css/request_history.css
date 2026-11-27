@@ -1,0 +1,318 @@
+
+/* ==========================================
+   SKILLSWAP - REQUEST HISTORY
+========================================== */
+
+.request-history-page {
+    width: 100%;
+    padding: 40px 10px 60px;
+}
+
+/* PAGE HEADING */
+
+.request-history-heading {
+    margin-bottom: 30px;
+}
+
+.request-history-eyebrow {
+    display: block;
+    color: #758850;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1.5px;
+    margin-bottom: 9px;
+}
+
+.request-history-heading h1 {
+    color: #14532d;
+    font-size: 27px;
+    font-weight: 750;
+    letter-spacing: -0.6px;
+    margin-bottom: 9px;
+}
+
+.request-history-heading p {
+    color: #7a8679;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* REQUEST LIST */
+
+.request-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* REQUEST CARD */
+
+.history-request-card {
+    padding: 25px;
+
+    background: #ffffff;
+    border: 1px solid #e2e9df;
+    border-radius: 14px;
+
+    box-shadow: 0 5px 18px rgba(28, 55, 32, 0.035);
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.history-request-card:hover {
+    border-color: #c8d8c3;
+    box-shadow: 0 8px 24px rgba(28, 55, 32, 0.07);
+}
+
+/* RECEIVER DETAILS */
+
+.history-request-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding-bottom: 20px;
+    border-bottom: 1px solid #edf0eb;
+}
+
+.history-receiver {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.history-receiver-avatar {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e4f1e5;
+    color: #14532d;
+    border-radius: 50%;
+
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.history-request-label {
+    display: block;
+    color: #8a9688;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 1.1px;
+    margin-bottom: 5px;
+}
+
+.history-receiver h3 {
+    color: #304c35;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* STATUS */
+
+.history-status {
+    display: inline-block;
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.status-pending {
+    background: #f3f0df;
+    color: #80713b;
+}
+
+.status-accepted {
+    background: #e4f1e5;
+    color: #14532d;
+}
+
+.status-rejected {
+    background: #fff0ed;
+    color: #a34c45;
+}
+
+.status-cancelled {
+    background: #f1f1ef;
+    color: #77766f;
+}
+
+.status-completed {
+    background: #e8f1ea;
+    color: #304c35;
+}
+
+/* SKILL DETAILS */
+
+.history-skill-details {
+    display: grid;
+    grid-template-columns: 1fr 35px 1fr;
+    align-items: center;
+    gap: 12px;
+
+    padding: 23px 0;
+}
+
+.history-skill-box {
+    min-height: 85px;
+    padding: 16px;
+
+    background: #f8faf7;
+    border: 1px solid #edf0eb;
+    border-radius: 10px;
+}
+
+.history-skill-label {
+    display: block;
+    color: #758850;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 0.7px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.history-skill-box h4 {
+    color: #304c35;
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.history-exchange-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #758850;
+    font-size: 23px;
+}
+
+/* PENDING REQUEST FOOTER */
+
+.history-request-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    padding-top: 18px;
+    border-top: 1px solid #edf0eb;
+}
+
+.history-pending-note {
+    color: #8a9688;
+    font-size: 11px;
+}
+
+.history-request-footer form {
+    margin: 0;
+}
+
+.cancel-request-button {
+    padding: 9px 16px;
+
+    background: #ffffff;
+    color: #a34c45;
+    border: 1px solid #ead6d3;
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 650;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-request-button:hover {
+    background: #fff3f1;
+    border-color: #dca9a2;
+}
+
+/* EMPTY STATE */
+
+.request-history-empty {
+    padding: 65px 20px;
+
+    background: #ffffff;
+    border: 1px dashed #d5e1d2;
+    border-radius: 14px;
+
+    text-align: center;
+}
+
+.history-empty-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    background: #e4f1e5;
+    color: #14532d;
+
+    border-radius: 50%;
+    font-size: 25px;
+}
+
+.request-history-empty h3 {
+    color: #304c35;
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.request-history-empty p {
+    color: #8a9688;
+    font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .request-history-page {
+        padding: 25px 0 40px;
+    }
+
+    .request-history-heading h1 {
+        font-size: 23px;
+    }
+
+    .history-request-card {
+        padding: 18px;
+    }
+
+    .history-skill-details {
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    .history-exchange-icon {
+        font-size: 19px;
+        transform: rotate(90deg);
+    }
+
+    .history-request-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .cancel-request-button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,212 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="my-profile-page">
+
+    <!-- PROFILE HEADER -->
+
+    <div class="my-profile-header">
+
+        <div class="my-profile-avatar">
+
+            {% if profile and profile.profile_photo %}
+                <img src="{{ profile.profile_photo.url }}" alt="Profile Photo">
+            {% else %}
+                <span>{{ request.user.username|first|upper }}</span>
+            {% endif %}
+
+        </div>
+
+        <div class="my-profile-heading">
+
+            <span class="my-profile-eyebrow">YOUR SKILLSWAP ACCOUNT</span>
+
+            <h1>{{ request.user.username }}</h1>
+
+            <p>
+                {{ request.user.first_name }} {{ request.user.last_name }}
+            </p>
+
+            <span class="profile-member-label">Community Member</span>
+
+        </div>
+
+        <div class="my-profile-header-actions">
+            <a href="{% url 'edit_profile' %}" class="edit-profile-button">
+                Edit Profile
+            </a>
+
+            <a href="{% url 'delete_account' %}" class="delete-profile-button">
+                Delete Account
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- PERSONAL INFORMATION -->
+
+    <div class="my-profile-section">
+
+        <div class="my-profile-section-heading">
+            <h2>Personal Information</h2>
+            <p>Your account details and profile information</p>
+        </div>
+
+        <div class="profile-information-grid">
+
+            <div class="profile-information-item">
+                <span>USERNAME</span>
+                <strong>{{ request.user.username }}</strong>
+            </div>
+
+            <div class="profile-information-item">
+                <span>FULL NAME</span>
+                <strong>
+                    {{ request.user.first_name }} {{ request.user.last_name }}
+                </strong>
+            </div>
+
+            <div class="profile-information-item">
+                <span>EMAIL ADDRESS</span>
+                <strong>{{ request.user.email }}</strong>
+            </div>
+
+            <div class="profile-information-item profile-bio-item">
+                <span>ABOUT ME</span>
+                <p>{{ profile.bio|default:"No bio added yet." }}</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SKILLS SECTION -->
+
+    <div class="my-profile-section">
+
+        <div class="my-profile-section-heading">
+            <h2>My Skills</h2>
+            <p>Manage the skills you teach and want to learn</p>
+        </div>
+
+        <div class="my-profile-skills-grid">
+
+            <!-- TEACHING SKILLS -->
+
+            <div class="my-profile-skill-card">
+
+                <div class="my-profile-skill-heading">
+                    <span class="my-profile-skill-icon teach-icon">↗</span>
+                    <div>
+                        <h3>Skills I Can Teach</h3>
+                        <p>Share your knowledge with others</p>
+                    </div>
+                </div>
+
+                <div class="my-profile-skill-list">
+
+                    {% for item in skills_to_teach %}
+
+                        <div class="my-profile-skill-item">
+
+                            <div>
+                                <strong>{{ item.skill.name }}</strong>
+                                <span>
+                                    {{ item.skill.category.name|default:"Uncategorized" }}
+                                </span>
+                            </div>
+
+                            <a href="{% url 'edit_skill' item.id %}">
+                                Edit
+                            </a>
+
+                        </div>
+
+                    {% empty %}
+
+                        <p class="my-profile-empty">
+                            No teaching skills added yet.
+                        </p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <!-- LEARNING SKILLS -->
+
+            <div class="my-profile-skill-card">
+
+                <div class="my-profile-skill-heading">
+                    <span class="my-profile-skill-icon learn-icon">↙</span>
+                    <div>
+                        <h3>Skills I Want to Learn</h3>
+                        <p>Discover new things and grow</p>
+                    </div>
+                </div>
+
+                <div class="my-profile-skill-list">
+
+                    {% for item in skills_to_learn %}
+
+                        <div class="my-profile-skill-item">
+
+                            <div>
+                                <strong>{{ item.skill.name }}</strong>
+                                <span>
+                                    {{ item.skill.category.name|default:"Uncategorized" }}
+                                </span>
+                            </div>
+
+                            <a href="{% url 'edit_skill' item.id %}">
+                                Edit
+                            </a>
+
+                        </div>
+
+                    {% empty %}
+
+                        <p class="my-profile-empty">
+                            No learning skills added yet.
+                        </p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADD SKILL ACTION -->
+
+    <div class="my-profile-add-skill">
+
+        <div>
+            <h3>Want to expand your skills?</h3>
+            <p>Add a skill you can teach or want to learn.</p>
+        </div>
+
+        <a href="{% url 'add_skill' %}" class="add-skill-button">
+            + Add Skill
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
