@@ -1,0 +1,85 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_reports.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="my-reports-page">
+
+    <div class="my-reports-heading">
+        <span class="my-reports-eyebrow">YOUR ACTIVITY</span>
+        <h1>My Submitted Reports</h1>
+        <p>Track the issues you have reported and check their current status.</p>
+    </div>
+
+    <div class="my-reports-list">
+
+        {% for report in reports %}
+
+            <article class="my-report-card">
+
+                <div class="my-report-top">
+
+                    <div class="my-report-title">
+                        <span class="my-report-label">REPORTED ISSUE</span>
+                        <h3>{{ report.title }}</h3>
+                    </div>
+
+                    <span class="report-status status-{{ report.status|lower }}">
+                        {{ report.get_status_display }}
+                    </span>
+
+                </div>
+
+                <div class="my-report-details">
+
+                    <div class="my-report-user">
+                        <span class="my-report-detail-label">REPORTED USER</span>
+
+                        <h4>
+                            {% if report.reported_user %}
+                                {{ report.reported_user.username }}
+                            {% else %}
+                                Not specified
+                            {% endif %}
+                        </h4>
+                    </div>
+
+                    <div class="my-report-description">
+                        <span class="my-report-detail-label">DESCRIPTION</span>
+                        <p>{{ report.description }}</p>
+                    </div>
+
+                </div>
+
+                <div class="my-report-footer">
+                    <span class="my-report-date">
+                        Submitted on {{ report.created_at|date:"d M Y, h:i A" }}
+                    </span>
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <div class="my-reports-empty">
+
+                <div class="my-reports-empty-icon">!</div>
+
+                <h3>No Reports Yet</h3>
+
+                <p>You have not submitted any reports yet.</p>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

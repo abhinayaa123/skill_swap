@@ -29,6 +29,7 @@ path('skills/',include('skills.urls')),
 path('swaps/', include('swaps.urls')),
 path('reviews/', include('reviews.urls')),
 path('admin-panel/', include('admin_panel.urls')),
+path('reports/', include('reports.urls')),
 ]
 
 if settings.DEBUG:

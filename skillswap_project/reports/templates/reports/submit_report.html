@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/submit_report.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="submit-report-page">
+
+    <div class="submit-report-heading">
+        <span class="submit-report-eyebrow">SKILLSWAP SUPPORT</span>
+        <h1>Report an Issue</h1>
+        <p>
+            Let us know if you have experienced a problem.
+            Your feedback helps us maintain a safe and reliable community.
+        </p>
+    </div>
+
+    <div class="submit-report-card">
+
+        <div class="submit-report-card-heading">
+            <div>
+                <span class="submit-report-label">REPORT DETAILS</span>
+                <h2>Submit a New Report</h2>
+            </div>
+
+            <span class="submit-report-tag">SUPPORT</span>
+        </div>
+
+        <div class="submit-report-form">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <div class="submit-report-actions">
+                    <button type="submit" class="report-submit-btn">
+                        Submit Report
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
